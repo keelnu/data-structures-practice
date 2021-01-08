@@ -3,6 +3,7 @@ Stacks:
 - LIFO (last in first out)
 - utilize push and pop methods
 - use case: undo/redo
+- The simplest application of a stack is to reverse a word. You push a given word to stack - letter by letter - and then pop letters from the stack.
 
 Queues:
 - FIFO (first in first out)
@@ -85,15 +86,18 @@ class Queue {
   }
 }
 
-const myQueue = new Queue();
-myQueue.enqueue('cat');
-myQueue.enqueue('llama');
-myQueue.enqueue('giraffe');
-myQueue;
+// const myQueue = new Queue();
+// myQueue.enqueue('cat');
+// myQueue;
+// myQueue.enqueue('llama');
+// myQueue.enqueue('giraffe');
+// myQueue;
 
-myQueue.dequeue();
-myQueue;
-myQueue.dequeue();
-myQueue;
-myQueue.dequeue();
-myQueue;
+// myQueue.dequeue();
+// myQueue;
+// myQueue.dequeue();
+// myQueue;
+// myQueue.dequeue();
+// myQueue;
+
+// IMPLEMENT A QUEUE USING STACKS
