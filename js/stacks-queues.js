@@ -101,3 +101,71 @@ class Queue {
 // myQueue;
 
 // IMPLEMENT A QUEUE USING STACKS
+
+
+/* WORD MACHINE 
+
+- Return error (-1) if stack is empty after all operations complete, if addition causes overflow, or subtraction causes underflow, if not enough frames on the stack to support the current operation.
+*/
+
+function wordMachine(input) {
+  // take string input and split into array
+  const arr = input.split(' ');
+  console.log(arr);
+  // instantiate new stack in array format
+  const stack = [];
+  // define error messages
+  const subError = 'Error: Stack requires minimum two frames to perform subtraction operation.';
+  const addError = 'Error: Stack requires minimum two frames to perform addition operation.';
+  // loop over array:
+  for (let i = 0; i < arr.length; i++) {
+    // check if arr[i] is a string that is a number
+    if (!isNaN(arr[i])) {
+      let parsedNum = parseInt(arr[i]);
+      // console.log('parsedNum', parsedNum);
+      stack.push(parsedNum);
+      console.log('PUSH, stack is now: ', stack);
+      // console.log('Last value pushed to stack: ', stack[stack.length - 1]);
+    }
+    // check if arr[i] is equal to 'DUP' -> push duplicate of last value pushed to stack array, to stack again
+    else if (arr[i] === 'DUP') {
+      stack.push(stack[stack.length - 1]);
+      console.log('DUP, stack is now: ', stack);
+    }
+    // if arr[i] is equal to '+' and stack length > 2 -> pop off last two values added to stack, add them together, and push them back onto the stack array
+    else if (arr[i] === '+') {
+      console.log('stack is: ', stack);
+      if (stack.length > 2) {
+        let add1 = stack.pop();
+        let add2 = stack.pop();
+        console.log('popped last two vals off, stack = ', stack);
+        let added = add1 + add2;
+        stack.push(added);
+        // console.log('after ADD, stack is now: ', stack);
+      }
+      if (stack.length < 2) return addError;
+    }
+    // if arr[i] is equal to '-' and stack length > 2 -> pop off last two values added to stack, subtract last from 2nd to last vals, and push them back onto the stack array
+    else if (arr[i] === '+') {
+      if (stack.length > 2) {
+        let sub1 = stack.pop();
+        let sub2 = stack.pop();
+        console.log('popped last two vals off stack: ', stack);
+        let subtracted = sub1 - sub2;
+        stack.push(subtracted);
+        // console.log('after SUBTRACT, stack is now: ', stack);
+      }
+      return subError;
+    } 
+    // console.log('STACK IS NOW: ', stack);
+    // if (stack.length > 1) {
+    //   const topMostVal = stack.length - 1;
+    //   return topMostVal;
+    // } else return -1;
+  }
+}
+
+const arr1 = '5 4 DUP + -';
+console.log(wordMachine(arr1));
+const arr2 = '5 DUP 4 + 2';
+// console.log(wordMachine(arr2));
